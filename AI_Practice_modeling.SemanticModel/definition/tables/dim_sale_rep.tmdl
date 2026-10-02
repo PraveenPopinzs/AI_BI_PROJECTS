@@ -1,0 +1,41 @@
+table dim_sale_rep
+	lineageTag: 63c8e70d-51ee-4527-9c46-6605663d9b7b
+
+	column Rep_id
+		dataType: string
+		lineageTag: a67bcea8-72be-4c9b-ba06-06d7293fc329
+		summarizeBy: none
+		sourceColumn: Rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep_name
+		dataType: string
+		lineageTag: 235ae2fa-58d0-439b-98f4-8c1ebaa7a999
+		summarizeBy: none
+		sourceColumn: Rep_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: ee422eb6-efbb-4540-8e18-e1327e2de5a0
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_sale_rep = m
+		mode: import
+		queryGroup: 02_Dimensions
+		source =
+				let
+				    Source = SalesReps,
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"RepID", "Rep_id"}, {"RepName", "Rep_name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

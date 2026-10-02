@@ -1,0 +1,7 @@
+role Region_RLS
+	modelPermission: read
+
+	tablePermission dim_sale_rep = [Rep_name] == "Anita George"
+
+	annotation PBI_Id = ae241325b5d146e79e873939cabc73ed
+

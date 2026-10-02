@@ -1,0 +1,34 @@
+table fact_bridge_salerep
+	lineageTag: 0fd306b0-4c89-499b-abea-2ce04aadd02d
+
+	column Customer_id
+		dataType: string
+		lineageTag: 76e35e57-7fef-4d8a-a3f3-84adc0e34249
+		summarizeBy: none
+		sourceColumn: Customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep_id
+		dataType: string
+		lineageTag: 2009765b-0ff8-4101-b84a-5a8c76a114c8
+		summarizeBy: none
+		sourceColumn: Rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_bridge_salerep = m
+		mode: import
+		queryGroup: 03_Facts
+		source =
+				let
+				    Source = sales2,
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Order_id", "Product_id", "Order_date", "Quantity", "Unit_price", "Discount", "Currency", "Ship_mode", "Product_id - Copy"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Removed Columns")
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

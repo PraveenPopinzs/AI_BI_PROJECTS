@@ -1,0 +1,49 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 01_Stage
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 02_Dimensions
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup 03_Facts
+
+	annotation PBI_QueryGroupOrder = 2
+
+queryGroup 04_Supports
+
+	annotation PBI_QueryGroupOrder = 3
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Customers","Products","Returns","SalesReps","Sales","Sales_Jan2025","Sales_Feb2025","dim_sale_rep","dim_customer","dim_product","sales1","sales2","fact_sale","fact_bridge_salerep","fact_sale_2026_sample (2)"]
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_customer
+ref table dim_sale_rep
+ref table dim_product
+ref table fact_sale
+ref table DateTableTemplate_d5399809-79c8-4379-9c83-396394f4d970
+ref table dim_date
+ref table LocalDateTable_1889cf64-2736-4837-adc2-9cc5401cf93a
+ref table _Measures
+ref table fact_bridge_salerep
+ref table 'Time Intel calc'
+
+ref role Region_RLS
+
+ref cultureInfo en-US
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "AI_Practice_modeling"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f9c65a4b-54ac-45b3-888b-239d0e759345"
+  }
+}

@@ -1,0 +1,156 @@
+expression sales1 =
+		let
+		    Source = Table.Combine({Sales_Jan2025, Sales_Feb2025}),
+		    #"Added Custom" = Table.AddColumn(Source, "Currency", each "INR"),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Added Custom",{"Order_id", "Customer_id", "Product_id", "Rep_id", "Order_date", "Quantity", "Unit_price", "Discount", "Currency", "Ship_mode"})
+		in
+		    #"Reordered Columns"
+	lineageTag: 67a19945-2786-40d6-9dd9-c737999d7f79
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression sales2 =
+		let
+		    Source = Table.Combine({Sales, sales1}),
+		    #"Duplicated Column" = Table.DuplicateColumn(Source, "Product_id", "Product_id - Copy"),
+		    #"Replaced Value" = Table.ReplaceValue(#"Duplicated Column","","n/a",Replacer.ReplaceValue,{"Customer_id"})
+		in
+		    #"Replaced Value"
+	lineageTag: f596d936-b92f-4b79-b083-92c5fa929bf5
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Customers =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Lookup_Tables.xlsx"), null, true),
+		    Customers_Sheet = Source{[Item="Customers",Kind="Sheet"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(Customers_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}, {"Column4", type text}, {"Column5", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 75c5ff5c-b98a-4296-9fcc-3d345677d1b3
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Products =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Lookup_Tables.xlsx"), null, true),
+		    Products_Sheet = Source{[Item="Products",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Products_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProductKey", Int64.Type}, {"ProductID", type text}, {"ProductName", type text}, {"Category", type text}, {"SubCategory", type text}, {"UnitPrice", Int64.Type}})
+		in
+		    #"Changed Type"
+	lineageTag: be2dc5be-5dc7-4963-90cf-866c7b192c29
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Returns =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Lookup_Tables.xlsx"), null, true),
+		    Returns_Sheet = Source{[Item="Returns",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Returns_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"OrderID", Int64.Type}, {"ReturnReason", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 200c50b2-e753-40dd-a31f-5fdcd5be625e
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression SalesReps =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Lookup_Tables.xlsx"), null, true),
+		    SalesReps_Sheet = Source{[Item="SalesReps",Kind="Sheet"]}[Data],
+		    #"Changed Type" = Table.TransformColumnTypes(SalesReps_Sheet,{{"Column1", type text}, {"Column2", type text}, {"Column3", type text}}),
+		    #"Promoted Headers" = Table.PromoteHeaders(#"Changed Type", [PromoteAllScalars=true]),
+		    #"Changed Type1" = Table.TransformColumnTypes(#"Promoted Headers",{{"RepID", type text}, {"RepName", type text}, {"Region", type text}})
+		in
+		    #"Changed Type1"
+	lineageTag: 234d7a41-0710-4276-b3ba-911ade106191
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Sales =
+		let
+		    Source = Excel.Workbook(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Sales_Mar2025.xlsx"), null, true),
+		    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
+		    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"OrderID", Int64.Type}, {"OrderDate", type date}, {"CustomerID", type text}, {"ProductID", type text}, {"RepID", type text}, {"Qty", Int64.Type}, {"UnitPrice", Int64.Type}, {"Discount", type number}, {"ShipMode", type text}, {"Currency", type text}}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Changed Type",{"OrderID", "CustomerID", "ProductID", "RepID", "Qty", "UnitPrice", "Discount", "Currency", "OrderDate", "ShipMode"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"OrderID", "Order_id"}, {"CustomerID", "Customer_id"}, {"ProductID", "Product_id"}, {"RepID", "Rep_id"}, {"Qty", "Quantity"}, {"UnitPrice", "Unit_price"}, {"OrderDate", "Order_date"}, {"ShipMode", "Ship_mode"}}),
+		    #"Reordered Columns1" = Table.ReorderColumns(#"Renamed Columns",{"Order_id", "Customer_id", "Product_id", "Rep_id", "Order_date", "Quantity", "Unit_price", "Discount", "Currency", "Ship_mode"})
+		in
+		    #"Reordered Columns1"
+	lineageTag: 06f92c94-dab1-422a-b845-8a865d467f56
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Sales_Jan2025 =
+		let
+		    Source = Csv.Document(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Sales_Jan2025.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"OrderID", Int64.Type}, {"OrderDate", type date}, {"CustomerID", type text}, {"ProductID", type text}, {"RepID", type text}, {"Qty", Int64.Type}, {"UnitPrice", Int64.Type}, {"Discount", type number}, {"ShipMode", type text}}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Changed Type",{"OrderID", "CustomerID", "ProductID", "RepID", "OrderDate", "Qty", "UnitPrice", "Discount", "ShipMode"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"OrderID", "Order_id"}, {"CustomerID", "Customer_id"}, {"ProductID", "Product_id"}, {"RepID", "Rep_id"}, {"OrderDate", "Order_date"}, {"Qty", "Quantity"}, {"UnitPrice", "Unit_price"}, {"ShipMode", "Ship_mode"}})
+		in
+		    #"Renamed Columns"
+	lineageTag: cbee283a-5d8a-4eef-8f7d-5ccf1b3101e6
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression Sales_Feb2025 =
+		let
+		    Source = Csv.Document(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\Sales_Feb2025.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"SalesRepID", type text}, {"Order_ID", Int64.Type}, {"Date", type date}, {"CustID", type text}, {"ProdID", Int64.Type}, {"Quantity", Int64.Type}, {"Price", Int64.Type}, {"Disc", type number}, {"Ship_Mode", type text}}),
+		    #"Reordered Columns" = Table.ReorderColumns(#"Changed Type",{"Order_ID", "CustID", "ProdID", "SalesRepID", "Date", "Quantity", "Price", "Disc", "Ship_Mode"}),
+		    #"Renamed Columns" = Table.RenameColumns(#"Reordered Columns",{{"Order_ID", "Order_id"}, {"CustID", "Customer_id"}, {"ProdID", "Product_id"}, {"SalesRepID", "Rep_id"}, {"Date", "Order_date"}, {"Price", "Unit_price"}, {"Disc", "Discount"}, {"Ship_Mode", "Ship_mode"}}),
+		    #"Added Custom" = Table.AddColumn(#"Renamed Columns", "Custom", each "P00"),
+		    #"Reordered Columns1" = Table.ReorderColumns(#"Added Custom",{"Order_id", "Customer_id", "Custom", "Product_id", "Rep_id", "Order_date", "Quantity", "Unit_price", "Discount", "Ship_mode"}),
+		    #"Merged Columns" = Table.CombineColumns(Table.TransformColumnTypes(#"Reordered Columns1", {{"Product_id", type text}}, "en-IN"),{"Custom", "Product_id"},Combiner.CombineTextByDelimiter("", QuoteStyle.None),"Merged"),
+		    #"Renamed Columns1" = Table.RenameColumns(#"Merged Columns",{{"Merged", "Product_id"}})
+		in
+		    #"Renamed Columns1"
+	lineageTag: a6817bab-9622-4425-be8c-d4684960dd9a
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression 'fact_sale_2026_sample (2)' =
+		let
+		    Source = Csv.Document(File.Contents("C:\Popinzs\Projects\Power BI Projects\Practice\Modeling_practice\files\fact_sale_2026_sample.csv"),[Delimiter=",", Columns=11, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+		    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Order_id", Int64.Type}, {"Customer_id", type text}, {"Product_id", type text}, {"Rep_id", type text}, {"Order_date", type date}, {"Quantity", Int64.Type}, {"Unit_price", Int64.Type}, {"Discount", type number}, {"Currency", type text}, {"Ship_mode", type text}, {"Return_reason", type text}})
+		in
+		    #"Changed Type"
+	lineageTag: 3783bc65-f57d-43f4-a97a-37375ce3228c
+	queryGroup: 01_Stage
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

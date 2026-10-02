@@ -1,0 +1,121 @@
+table fact_sale
+	lineageTag: d1ee3135-bdf3-41aa-b0f9-f79dc2af44a0
+
+	column Order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 975221e9-59ab-4b6a-b38d-3cf3f845214b
+		summarizeBy: none
+		sourceColumn: Order_id
+
+		annotation SummarizationSetBy = User
+
+	column Customer_id
+		dataType: string
+		lineageTag: 47b596a4-dd8d-416d-ba88-9d21189ab3de
+		summarizeBy: none
+		sourceColumn: Customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_id
+		dataType: string
+		lineageTag: ff0f897c-0cf3-435b-97c9-ac5c00268a8e
+		summarizeBy: none
+		sourceColumn: Product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rep_id
+		dataType: string
+		lineageTag: 42f4f12a-201f-4267-9ab7-cdff04056846
+		summarizeBy: none
+		sourceColumn: Rep_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 969661f7-7e9e-4b57-8cb6-fa8b13f55107
+		summarizeBy: none
+		sourceColumn: Order_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: fb828cae-12cf-4c13-a8d0-f7167a2d4295
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit_price
+		dataType: int64
+		formatString: 0
+		lineageTag: 9cc74a9e-9f7a-402c-a966-6249b6fec2bc
+		summarizeBy: sum
+		sourceColumn: Unit_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column Discount
+		dataType: double
+		lineageTag: 8b3e535e-5855-4329-b6a5-836fef1fa72f
+		summarizeBy: sum
+		sourceColumn: Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Currency
+		dataType: string
+		lineageTag: 931d01c6-661b-4767-9801-6f6cbcb0bf36
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_mode
+		dataType: string
+		lineageTag: 05c4bf00-3a4d-4b1f-a854-4250cf8be8b1
+		summarizeBy: none
+		sourceColumn: Ship_mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Return_reason
+		dataType: string
+		lineageTag: 592d43b3-ca7c-4346-88b3-c2095c6f02cc
+		summarizeBy: none
+		sourceColumn: Return_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_sale = m
+		mode: import
+		queryGroup: 03_Facts
+		source =
+				let
+				    Source = sales2,
+				    #"Merged Queries" = Table.NestedJoin(Source, {"Order_id"}, Returns, {"OrderID"}, "Returns", JoinKind.LeftOuter),
+				    #"Expanded Returns" = Table.ExpandTableColumn(#"Merged Queries", "Returns", {"ReturnReason"}, {"Returns.ReturnReason"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Expanded Returns",null,"n/a",Replacer.ReplaceValue,{"Returns.ReturnReason"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Replaced Value",{{"Returns.ReturnReason", "Return_reason"}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Renamed Columns","","n/a",Replacer.ReplaceValue,{"Customer_id"}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Replaced Value1",{"Product_id - Copy"}),
+				    #"Appended Query" = Table.Combine({#"Removed Columns", #"fact_sale_2026_sample (2)"})
+				in
+				    #"Appended Query"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,193 @@
+table _Measures
+	lineageTag: 71d7d508-0e6c-45b8-92cf-7b44834079e4
+
+	measure Total_Revenue = SUMX(fact_sale,fact_sale[Unit_price]*fact_sale[Quantity]*(1-fact_sale[Discount]))
+		formatString: 0
+		displayFolder: sale
+		lineageTag: f4b8653f-84db-467f-95b3-cc62068cfc8b
+
+	measure Total_orders = DISTINCTCOUNT(fact_sale[Order_id])
+		formatString: 0
+		displayFolder: sale
+		lineageTag: 271b149e-a270-4534-ba4a-181efca14145
+
+	measure 'Return_rate %' =
+			CALCULATE(
+			         var total_order = [Total_orders]
+			         var total_return =  CALCULATE(COUNT(fact_sale[Return_reason]),fact_sale[Return_reason] <> "n/a")
+			
+			         return
+			            DIVIDE(total_return,total_order)
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: sale
+		lineageTag: ee280bff-eaee-480c-84fd-22b5676286ce
+
+	measure Net_Revenue =
+			CALCULATE(
+			                 [Total_Revenue],fact_sale[Return_reason] = "n/a"
+			)
+		formatString: 0
+		displayFolder: sale
+		lineageTag: b2fd16b9-e8bd-4494-b037-c35d6c346b05
+
+	measure previous_month_sale =
+			CALCULATE (
+			    [Total_Revenue],
+			    PREVIOUSMONTH ( dim_date[Date] )
+			)
+		formatString: 0
+		displayFolder: Time Measures
+		lineageTag: 289ac794-e5ad-41cf-8f87-7b126d999d90
+
+	measure 'MOM %' =
+			CALCULATE(
+			        var current_month = [Total_Revenue]
+			        var previous_month = [previous_month_sale]
+			
+			        return
+			          DIVIDE(current_month-previous_month,previous_month)
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Time Measures
+		lineageTag: 9bf5570b-1291-472a-a9cf-fe2b314c680d
+
+	measure Top_region_by_sale =
+			CALCULATE(
+			                           [Total_Revenue],
+			                           TOPN(10,
+			                                VALUES(dim_sale_rep[Region]),
+			                                       [Total_Revenue],DESC)
+			)
+		formatString: 0
+		displayFolder: sale
+		lineageTag: 609d4d0e-a784-4baa-8b76-f6d1eb6ef813
+
+	measure 'Average_Discount %' = ```
+			( 
+			VAR GrossRevenue = SUMX(fact_sale, fact_sale[Unit_price]*fact_sale[Quantity])
+			VAR DiscountAmount = SUMX(fact_sale, fact_sale[Unit_price]*fact_sale[Quantity]*fact_sale[Discount])
+			RETURN DIVIDE(DiscountAmount, GrossRevenue)
+			)
+			```
+		displayFolder: sale
+		lineageTag: 8da8a977-f282-4c0f-94a5-05b1f33ad091
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure YTD = TOTALYTD([Total_Revenue],dim_date[Date])
+		displayFolder: Time Measures
+		lineageTag: 74bb4424-223d-4353-8585-1a6560c93eec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Rolling_3_Month =
+			CALCULATE(
+			                    [Total_Revenue],
+			                    DATESINPERIOD(dim_date[Date],MAX(dim_date[Date]),-3,MONTH)
+			)
+		displayFolder: Time Measures
+		lineageTag: 37376aca-0ec8-4a0b-a9c8-fb5b79bd4c05
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Previous_year_revenue =
+			CALCULATE(
+			                        [Total_Revenue],
+			                        SAMEPERIODLASTYEAR(dim_date[Date])
+			)
+		displayFolder: Time Measures
+		lineageTag: 0fc880a6-e76b-4094-847c-8536099f6bfd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Contribution_to_Total' =
+			CALCULATE(
+			                                 var total_revenue = [Total_Revenue]
+			                                 var total_revenue_filter = CALCULATE([Total_Revenue],ALL(dim_product[Category])
+			                                 )
+			
+			                                 RETURN
+			                                 DIVIDE(total_revenue,total_revenue_filter)
+			)
+		displayFolder: sale
+		lineageTag: d3e0f8ee-8fb6-4b4b-a241-efca90386285
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure top_product_by_revenue = ```
+			var top1 =  TOPN(1,
+			                          VALUES(dim_product[Product_name]),
+			                          [Total_Revenue],
+			                          DESC
+			      
+			)
+			RETURN
+			    CALCULATE(SELECTEDVALUE(dim_product[Product_name],top1))
+			```
+		displayFolder: sale
+		lineageTag: feaba06c-0f05-48e2-9bb5-08905846e54c
+
+	measure Total_revenue_YearTD = TOTALYTD([Total_Revenue],dim_date[Date])
+		displayFolder: Time Measures
+		lineageTag: 73eda80b-4f3f-4ba9-b32c-bf112af780a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'YearOYear %' = ```
+			
+			   VAR current_year =  [Total_Revenue]
+			    var previous_year = CALCULATE([Total_Revenue],SAMEPERIODLASTYEAR(dim_date[Date]))
+			
+			    return
+			    DIVIDE(current_year-previous_year,previous_year)
+			```
+		displayFolder: Time Measures
+		lineageTag: b70e94d4-efbb-47c8-bcb5-55f86cc94241
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MOM = [Total_Revenue]-[previous_month_sale]
+		displayFolder: Time Measures
+		lineageTag: 66af08f3-0c2a-468f-b56e-221a8c76f965
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Running Sale' =
+			CALCULATE([Total_Revenue],
+			                       FILTER(ALL(dim_date[Date])
+			                       ,dim_date[Date] <= MAX(dim_date[Date]))
+			)
+		displayFolder: sale
+		lineageTag: 772ec7d9-c223-4d97-a2ac-6b612b9a3f1f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MTD = TOTALMTD([Total_Revenue],dim_date[Date])
+		displayFolder: Time Measures
+		lineageTag: fdf28402-7332-4163-a9be-97303700959c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure QTD = TOTALQTD([Total_Revenue],dim_date[Date])
+		displayFolder: Time Measures
+		lineageTag: e61186d7-796d-4916-90d3-a368cdad6b5b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 01c8768d-6186-4f98-be7c-f4dc45d40a77
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 6caf023ddbdf4a238247faa24b382b2d
+

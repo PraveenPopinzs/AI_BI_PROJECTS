@@ -1,0 +1,93 @@
+table dim_customer
+	lineageTag: 908f72d4-d5f0-4efc-afe9-7b5b02454f29
+
+	column Customer_id
+		dataType: string
+		lineageTag: f96c7da8-94db-44c8-9e2f-18df5f215229
+		summarizeBy: none
+		sourceColumn: Customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Full_name
+		dataType: string
+		lineageTag: ef8aae81-6c0d-45ca-b56e-b2efbdf85c96
+		summarizeBy: none
+		sourceColumn: Full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Email
+		dataType: string
+		lineageTag: a6e11a39-a9c6-4dd1-9071-349ecb25dda1
+		summarizeBy: none
+		sourceColumn: Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 969771d1-9e71-4413-9944-3908fa538be6
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: c1ad47a3-4643-45f7-ad9c-eeb4a8987fbb
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Domain
+		dataType: string
+		lineageTag: da164f90-00c1-48bc-ac20-33b795108c48
+		summarizeBy: none
+		sourceColumn: Domain
+
+		annotation SummarizationSetBy = Automatic
+
+	column First_name
+		dataType: string
+		lineageTag: a7fec7a6-6952-4708-a0a8-a9b61b3a81ba
+		summarizeBy: none
+		sourceColumn: First_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_name
+		dataType: string
+		lineageTag: 9bf3cf70-9602-41b3-b78b-78322e8a30e4
+		summarizeBy: none
+		sourceColumn: Last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_customer = m
+		mode: import
+		queryGroup: 02_Dimensions
+		source =
+				let
+				    Source = Customers,
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"CustomerID", type text}, {"Name", type text}, {"Email", type text}, {"City", type text}, {"Country", type text}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Email", "Email - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "Email - Copy", Splitter.SplitTextByDelimiter("@", QuoteStyle.Csv), {"Email - Copy.1", "Email - Copy.2"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Email - Copy.1", type text}, {"Email - Copy.2", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"Email - Copy.1"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Email - Copy.2", "Domain"}}),
+				    #"Duplicated Column1" = Table.DuplicateColumn(#"Renamed Columns", "Name", "Name - Copy"),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Duplicated Column1", "Name - Copy", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"Name - Copy.1", "Name - Copy.2"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter1",{{"Name - Copy.1", type text}, {"Name - Copy.2", type text}}),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Changed Type2",{{"Name - Copy.1", "First_name"}, {"Name - Copy.2", "Last_name"}, {"Name", "Full_name"}, {"CustomerID", "Customer_id"}}),
+				    #"Reordered Columns" = Table.ReorderColumns(#"Renamed Columns1",{"Customer_id", "First_name", "Last_name", "Full_name", "Email", "Domain", "City", "Country"}),
+				    #"Removed Duplicates" = Table.Distinct(#"Reordered Columns", {"Customer_id"})
+				in
+				    #"Removed Duplicates"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

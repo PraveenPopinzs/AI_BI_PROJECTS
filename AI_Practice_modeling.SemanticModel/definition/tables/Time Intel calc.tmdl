@@ -1,0 +1,38 @@
+table 'Time Intel calc'
+	lineageTag: b247bbf7-b982-4206-a5b3-74d738eae14c
+
+	calculationGroup
+
+		calculationItem Current = SELECTEDMEASURE()
+
+		calculationItem PY =
+				CALCULATE(
+				                        SELECTEDMEASURE(),
+				                        SAMEPERIODLASTYEAR(dim_date[Date])
+				)
+
+		calculationItem QTD = TOTALQTD(SELECTEDMEASURE(),dim_date[Date])
+
+		calculationItem YTD = TOTALYTD(SELECTEDMEASURE(),dim_date[Date])
+
+		calculationItem 'YOY  %' =
+				VAR current_year =  SELECTEDMEASURE()
+				    var previous_year = CALCULATE(SELECTEDMEASURE(),SAMEPERIODLASTYEAR(dim_date[Date]))
+				
+				    return
+				    DIVIDE(current_year-previous_year,previous_year)
+
+			formatStringDefinition = 0.0%
+
+	column Name
+		dataType: string
+		lineageTag: 38efb656-afb6-4c55-80be-508177b5fe27
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: f27a3bac-3dbb-409f-8155-441f82636304
+		sourceColumn: Ordinal
+

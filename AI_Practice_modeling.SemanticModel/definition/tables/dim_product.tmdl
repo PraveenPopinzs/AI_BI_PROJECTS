@@ -1,0 +1,67 @@
+table dim_product
+	lineageTag: ed7c0bbe-19b5-4361-983e-5b1534188ffc
+
+	column Product_key
+		dataType: int64
+		formatString: 0
+		lineageTag: 7124e038-f498-45e1-b017-0abff147d916
+		summarizeBy: none
+		sourceColumn: Product_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_id
+		dataType: string
+		lineageTag: c35122e5-4485-410e-92ef-db7e07453420
+		summarizeBy: none
+		sourceColumn: Product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_name
+		dataType: string
+		lineageTag: ea5b6194-011d-4a12-a8de-ed59b1bc2446
+		summarizeBy: none
+		sourceColumn: Product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 78dadb3b-aaf5-4951-977a-8f093dd9486d
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column SubCategory
+		dataType: string
+		lineageTag: 20ed7aa6-8592-40ad-aff9-013b41d05d90
+		summarizeBy: none
+		sourceColumn: SubCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: a6b9cac6-3cf9-4669-be4c-aadff95c1337
+		summarizeBy: none
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_product = m
+		mode: import
+		queryGroup: 02_Dimensions
+		source =
+				let
+				    Source = Products,
+				    #"Renamed Columns" = Table.RenameColumns(Source,{{"ProductKey", "Product_key"}, {"ProductID", "Product_id"}, {"ProductName", "Product_name"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
