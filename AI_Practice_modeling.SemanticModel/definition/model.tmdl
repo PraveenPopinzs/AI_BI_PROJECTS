@@ -30,7 +30,7 @@ annotation PBI_QueryOrder = ["Customers","Products","Returns","SalesReps","Sales
 
 annotation __TEdtr = 1
 
-annotation PBI_ProTooling = ["DevMode"]
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
 
 ref table dim_customer
 ref table dim_sale_rep

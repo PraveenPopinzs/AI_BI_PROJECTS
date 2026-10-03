@@ -65,6 +65,10 @@ table dim_customer
 
 		annotation SummarizationSetBy = Automatic
 
+	column Channel = SWITCH ( RANDBETWEEN ( 1, 5 ), 1, "Online", 2, "Retail", 3, "Mobile App", 4, "Social Media", 5, "Wholesale" )
+		dataType: string
+		lineageTag: 9b28ca53-406c-448e-8f29-931a53dae85e
+
 	partition dim_customer = m
 		mode: import
 		queryGroup: 02_Dimensions

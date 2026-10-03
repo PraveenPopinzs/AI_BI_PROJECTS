@@ -175,6 +175,12 @@ table _Measures
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	/// Average net sales revenue per order.
+	measure 'Average of Sales' = AVERAGEX ( VALUES ( fact_sale[Order_id] ), [Total_Revenue] )
+		formatString: 0.00
+		displayFolder: sale
+		lineageTag: f5e9d182-3c24-4905-bb9a-54455bec9697
+
 	column Column
 		isHidden
 		formatString: 0
