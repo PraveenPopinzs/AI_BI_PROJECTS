@@ -1,0 +1,54 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "a012132435465768879a",
+  "position": { "x": 900, "y": 652, "z": 1000, "height": 366, "width": 972, "tabOrder": 1000 },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "dim_product" } }, "Property": "Product_name" } },
+              "queryRef": "dim_product.Product_name",
+              "nativeQueryRef": "Product",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_Revenue" } },
+              "queryRef": "_Measures.Total_Revenue",
+              "nativeQueryRef": "Total Revenue"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_Revenue" } },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } },
+            "text": { "expr": { "Literal": { "Value": "'PRODUCT REVENUE RANKING'" } } },
+            "fontSize": { "expr": { "Literal": { "Value": "13D" } } },
+            "bold": { "expr": { "Literal": { "Value": "true" } } },
+            "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#17324D'" } } } } }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "7e8f9010121324354657",
+  "position": { "x": 48, "y": 300, "z": 700, "height": 324, "width": 1100, "tabOrder": 700 },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "dim_date" } }, "Property": "Year" } },
+              "queryRef": "dim_date.Year",
+              "nativeQueryRef": "Year",
+              "active": true
+            },
+            {
+              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "dim_date" } }, "Property": "Month Name" } },
+              "queryRef": "dim_date.Month Name",
+              "nativeQueryRef": "Month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_Revenue" } },
+              "queryRef": "_Measures.Total_Revenue",
+              "nativeQueryRef": "Total Revenue"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } },
+            "text": { "expr": { "Literal": { "Value": "'MONTHLY REVENUE TREND'" } } },
+            "fontSize": { "expr": { "Literal": { "Value": "13D" } } },
+            "bold": { "expr": { "Literal": { "Value": "true" } } },
+            "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#17324D'" } } } } }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

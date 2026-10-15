@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "4b5c6d7e8f9010121324",
+  "position": { "x": 1440, "y": 32, "z": 400, "height": 142, "width": 432, "tabOrder": 400 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Return_rate %" } },
+              "queryRef": "_Measures.Return_rate %",
+              "nativeQueryRef": "Return Rate"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } },
+            "text": { "expr": { "Literal": { "Value": "'RETURN RATE'" } } },
+            "fontSize": { "expr": { "Literal": { "Value": "12D" } } },
+            "bold": { "expr": { "Literal": { "Value": "true" } } },
+            "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#49627A'" } } } } }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

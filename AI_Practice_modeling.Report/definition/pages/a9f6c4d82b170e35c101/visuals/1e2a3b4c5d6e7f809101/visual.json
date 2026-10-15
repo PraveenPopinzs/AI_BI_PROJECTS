@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "1e2a3b4c5d6e7f809101",
+  "position": { "x": 48, "y": 32, "z": 100, "height": 142, "width": 432, "tabOrder": 100 },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_Revenue" } },
+              "queryRef": "_Measures.Total_Revenue",
+              "nativeQueryRef": "Total Revenue"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": { "expr": { "Literal": { "Value": "true" } } },
+            "text": { "expr": { "Literal": { "Value": "'TOTAL REVENUE'" } } },
+            "fontSize": { "expr": { "Literal": { "Value": "12D" } } },
+            "bold": { "expr": { "Literal": { "Value": "true" } } },
+            "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#49627A'" } } } } }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}
