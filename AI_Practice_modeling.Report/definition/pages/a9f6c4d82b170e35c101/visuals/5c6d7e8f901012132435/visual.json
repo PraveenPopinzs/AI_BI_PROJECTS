@@ -1,7 +1,14 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "5c6d7e8f901012132435",
-  "position": { "x": 48, "y": 196, "z": 500, "height": 82, "width": 320, "tabOrder": 500 },
+  "position": {
+    "x": 48,
+    "y": 196,
+    "z": 500,
+    "height": 82,
+    "width": 320,
+    "tabOrder": 500
+  },
   "visual": {
     "visualType": "slicer",
     "query": {
@@ -9,7 +16,16 @@
         "Values": {
           "projections": [
             {
-              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "dim_date" } }, "Property": "Year" } },
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
               "queryRef": "dim_date.Year",
               "nativeQueryRef": "Year",
               "active": true
@@ -22,19 +38,19 @@
       "data": [
         {
           "properties": {
-            "mode": { "expr": { "Literal": { "Value": "'Basic'" } } }
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
           }
         }
       ],
-      "general": [ { "properties": {} } ],
-      "title": [
+      "general": [
         {
-          "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "text": { "expr": { "Literal": { "Value": "'YEAR'" } } },
-            "fontSize": { "expr": { "Literal": { "Value": "11D" } } },
-            "bold": { "expr": { "Literal": { "Value": "true" } } }
-          }
+          "properties": {}
         }
       ]
     },

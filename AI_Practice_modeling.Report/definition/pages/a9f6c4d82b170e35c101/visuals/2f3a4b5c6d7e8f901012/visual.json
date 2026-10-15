@@ -1,7 +1,14 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "2f3a4b5c6d7e8f901012",
-  "position": { "x": 512, "y": 32, "z": 200, "height": 142, "width": 432, "tabOrder": 200 },
+  "position": {
+    "x": 512,
+    "y": 32,
+    "z": 200,
+    "height": 142,
+    "width": 432,
+    "tabOrder": 200
+  },
   "visual": {
     "visualType": "cardVisual",
     "query": {
@@ -9,26 +16,22 @@
         "Data": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_orders" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total_orders"
+                }
+              },
               "queryRef": "_Measures.Total_orders",
               "nativeQueryRef": "Total Orders"
             }
           ]
         }
       }
-    },
-    "objects": {
-      "title": [
-        {
-          "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "text": { "expr": { "Literal": { "Value": "'TOTAL ORDERS'" } } },
-            "fontSize": { "expr": { "Literal": { "Value": "12D" } } },
-            "bold": { "expr": { "Literal": { "Value": "true" } } },
-            "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#49627A'" } } } } }
-          }
-        }
-      ]
     },
     "drillFilterOtherVisuals": true
   }

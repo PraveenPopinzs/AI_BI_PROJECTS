@@ -1,7 +1,14 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "9a012132435465768879",
-  "position": { "x": 48, "y": 652, "z": 900, "height": 366, "width": 820, "tabOrder": 900 },
+  "position": {
+    "x": 48,
+    "y": 652,
+    "z": 900,
+    "height": 366,
+    "width": 820,
+    "tabOrder": 900
+  },
   "visual": {
     "visualType": "barChart",
     "query": {
@@ -9,7 +16,16 @@
         "Category": {
           "projections": [
             {
-              "field": { "Column": { "Expression": { "SourceRef": { "Entity": "dim_sale_rep" } }, "Property": "Region" } },
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_sale_rep"
+                    }
+                  },
+                  "Property": "Region"
+                }
+              },
               "queryRef": "dim_sale_rep.Region",
               "nativeQueryRef": "Region",
               "active": true
@@ -19,7 +35,16 @@
         "Y": {
           "projections": [
             {
-              "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_Revenue" } },
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total_Revenue"
+                }
+              },
               "queryRef": "_Measures.Total_Revenue",
               "nativeQueryRef": "Total Revenue"
             }
@@ -29,25 +54,21 @@
       "sortDefinition": {
         "sort": [
           {
-            "field": { "Measure": { "Expression": { "SourceRef": { "Entity": "_Measures" } }, "Property": "Total_Revenue" } },
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Total_Revenue"
+              }
+            },
             "direction": "Descending"
           }
         ],
         "isDefaultSort": true
       }
-    },
-    "objects": {
-      "title": [
-        {
-          "properties": {
-            "show": { "expr": { "Literal": { "Value": "true" } } },
-            "text": { "expr": { "Literal": { "Value": "'SALES BY REGION'" } } },
-            "fontSize": { "expr": { "Literal": { "Value": "13D" } } },
-            "bold": { "expr": { "Literal": { "Value": "true" } } },
-            "color": { "solid": { "color": { "expr": { "Literal": { "Value": "'#17324D'" } } } } }
-          }
-        }
-      ]
     },
     "drillFilterOtherVisuals": true
   }
