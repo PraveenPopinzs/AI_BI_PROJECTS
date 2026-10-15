@@ -115,15 +115,20 @@ table _Measures
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure 'Product Revenue Share %' = DIVIDE([Total_Revenue], CALCULATE([Total_Revenue], REMOVEFILTERS(dim_product)))
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: sale
+
 	measure top_product_by_revenue = ```
-			var top1 =  TOPN(1,
-			                          VALUES(dim_product[Product_name]),
-			                          [Total_Revenue],
-			                          DESC
-			      
+			MAXX(
+			    TOPN(
+			        1,
+			        ALLSELECTED(dim_product[Product_name]),
+			        [Total_Revenue],
+			        DESC
+			    ),
+			    dim_product[Product_name]
 			)
-			RETURN
-			    CALCULATE(SELECTEDVALUE(dim_product[Product_name],top1))
 			```
 		displayFolder: sale
 		lineageTag: feaba06c-0f05-48e2-9bb5-08905846e54c
@@ -196,4 +201,3 @@ table _Measures
 		source = Row("Column", BLANK())
 
 	annotation PBI_Id = 6caf023ddbdf4a238247faa24b382b2d
-

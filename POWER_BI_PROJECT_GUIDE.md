@@ -17,7 +17,7 @@ This guide is for developers maintaining the PBIP project and managers or analys
 | Main fact | `fact_sale` |
 | Main dimensions | `dim_customer`, `dim_product`, `dim_sale_rep`, `dim_date` |
 | Supporting objects | `_Measures`, `fact_bridge_salerep`, `Time Intel calc`, hidden auto-date tables |
-| Report pages | `Page 1` and `Page 3` |
+| Report pages | `Page 1`, `Page 3`, `Sale Performance Analysis`, and `Product performance analysis` |
 | Security role | `Region_RLS` (currently filters to one named representative) |
 
 Open `AI_Practice_modeling.pbip` in Power BI Desktop to work with the report and semantic model. The PBIP file points to the report folder; the report definition in turn references the semantic model.
@@ -51,7 +51,7 @@ AI_Practice_modeling.SemanticModel/
 
 ## 4. Report experience
 
-The report currently contains two pages, both configured to fit the page:
+The report currently contains four pages, all configured to fit the page:
 
 ### Page 1 — sales overview
 
@@ -61,7 +61,13 @@ The page includes KPI cards, a representative slicer, and visuals for sales by r
 
 This page compares sales-related measures across the date hierarchy. It includes a date-oriented table/matrix with revenue and time metrics, plus a clustered column chart using year/month and month-over-month sales.
 
-The page names are the names currently stored in the project; they are not descriptive business titles. The report's page order contains `Page 1` and `Page 3`.
+### Sale Performance Analysis
+
+This page contains sales KPI cards and visuals for revenue by product category, sales trends, and sales performance breakdowns.
+
+### Product performance analysis
+
+This page is an interactive product dashboard. Revenue, net revenue, order count, and top-product KPI cards sit above category, subcategory, and monthly revenue visuals. Category, subcategory, and year slicers filter the page, and a product matrix compares revenue, orders, and each product's share of all revenue. The product-share measure removes product filters from its denominator, while preserving other report filters.
 
 ## 5. Semantic model
 
@@ -138,6 +144,7 @@ Measures live in `_Measures`, grouped into the `sale` and `Time Measures` displa
 | `% Contribution_to_Total` | Current-context revenue divided by revenue with the product-category filter removed |
 | `Top_region_by_sale` | Revenue evaluated over the top 10 regions by revenue |
 | `top_product_by_revenue` | Product name with the highest revenue in the current context |
+| `Product Revenue Share %` | Product revenue divided by total revenue with product filters removed |
 | `Running Sale` | Cumulative `[Total_Revenue]` through the maximum date in the current context |
 
 ### `Time Measures` folder
