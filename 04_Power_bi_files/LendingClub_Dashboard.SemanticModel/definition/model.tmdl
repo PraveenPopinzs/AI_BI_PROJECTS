@@ -1,0 +1,24 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["lending_club_loan_two", "00_Measures"]
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table lending_club_loan_two
+ref table DateTableTemplate_00e38b5d-9bb9-4398-a90e-cf0fe1f98c9f
+ref table LocalDateTable_00d3e7f1-afc5-4062-8dab-e0d10286cccf
+ref table LocalDateTable_1d7e4c86-6dc5-40dd-b35e-66bf6e1a112a
+ref table 00_Measures
+ref table Dim_Date
+
+ref cultureInfo en-US
+

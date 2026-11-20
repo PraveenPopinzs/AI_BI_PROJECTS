@@ -1,0 +1,60 @@
+table Dim_Date
+	lineageTag: 21d9e7d3-0d95-4781-a93a-6e174125ae71
+	dataCategory: Time
+
+	column Date
+		isUnique
+		formatString: Short Date
+		lineageTag: 068c04f8-2c13-4a3f-8d26-e0d96d731887
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+	column Year
+		formatString: 0
+		lineageTag: b1ecc525-18ea-4f0a-bd51-591468b0a320
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 6598f6d4-0b30-4fa5-a811-50044c2b0204
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+	column 'Month Name'
+		lineageTag: 4b4e6fcd-62be-4867-9bb2-88dbeceb5aaa
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Name]
+		sortByColumn: 'Month Number'
+
+	column Quarter
+		lineageTag: 5356260c-648c-4552-a13d-14b40d5f0df7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+	column Year-Month
+		lineageTag: cf19be0b-0c9d-4c9e-98f8-da58b2f7ba82
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year-Month]
+
+	partition Dim_Date = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				    CALENDAR(
+				        MINX(ALL('lending_club_loan_two'), 'lending_club_loan_two'[issue_date]),
+				        MAXX(ALL('lending_club_loan_two'), 'lending_club_loan_two'[issue_date])
+				    ),
+				    "Year", YEAR([Date]),
+				    "Month Number", MONTH([Date]),
+				    "Month Name", FORMAT([Date], "MMMM"),
+				    "Quarter", "Q" & FORMAT(QUARTER([Date]), "0"),
+				    "Year-Month", FORMAT([Date], "yyyy-MM")
+				)
+

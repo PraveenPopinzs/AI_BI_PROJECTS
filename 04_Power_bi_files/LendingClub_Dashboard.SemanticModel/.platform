@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "LendingClub_Dashboard"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "47c73a8b-5305-4e74-b79b-b16ff3af8a5b"
+  }
+}

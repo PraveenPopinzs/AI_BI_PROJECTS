@@ -1,0 +1,466 @@
+table lending_club_loan_two
+	lineageTag: 5b383e1d-f372-4541-8995-132a954fee52
+
+	column loan_amount
+		dataType: double
+		lineageTag: 10c658a9-5275-48b4-af28-0cc2aa5a9e27
+		summarizeBy: sum
+		sourceColumn: loan_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_term
+		dataType: string
+		lineageTag: b653f8e9-a352-4f27-97e3-56a792475826
+		summarizeBy: none
+		sourceColumn: loan_term
+
+		annotation SummarizationSetBy = Automatic
+
+	column interest_rate
+		dataType: double
+		lineageTag: 776fe6c3-aaec-41f5-b7d1-db18af4fad2b
+		summarizeBy: sum
+		sourceColumn: interest_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column installment_amount
+		dataType: double
+		lineageTag: 866b2cfb-167c-4ddc-aeb8-12aed374cd78
+		summarizeBy: sum
+		sourceColumn: installment_amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column loan_grade
+		dataType: string
+		lineageTag: cc25b37f-c51e-4b47-a846-bfec2e5903a4
+		summarizeBy: none
+		sourceColumn: loan_grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_sub_grade
+		dataType: string
+		lineageTag: 69d387a1-5c4f-499d-b225-122acf208a8e
+		summarizeBy: none
+		sourceColumn: loan_sub_grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column employment_title
+		dataType: string
+		lineageTag: 8d8b8e25-d6a4-4ff6-8664-35e240a301fb
+		summarizeBy: none
+		sourceColumn: employment_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column employment_length
+		dataType: string
+		lineageTag: 1a6854a1-f9d8-47b8-9121-c677994275c5
+		summarizeBy: none
+		sourceColumn: employment_length
+
+		annotation SummarizationSetBy = Automatic
+
+	column home_ownership
+		dataType: string
+		lineageTag: efbc84fd-adf6-467e-afc1-e8b9cef3e8b2
+		summarizeBy: none
+		sourceColumn: home_ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column annual_income
+		dataType: double
+		lineageTag: 2cf95fbc-5e42-4f64-ae20-05430b31234e
+		summarizeBy: sum
+		sourceColumn: annual_income
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column verification_status
+		dataType: string
+		lineageTag: c2def6cd-18ce-48d7-9e40-169f2466e788
+		summarizeBy: none
+		sourceColumn: verification_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f8584430-629a-483f-86f4-6425d09c3f48
+		summarizeBy: none
+		sourceColumn: issue_date
+
+		variation Variation
+			isDefault
+			relationship: 4adec703-f086-43c1-b010-7c0a083ef207
+			defaultHierarchy: LocalDateTable_00d3e7f1-afc5-4062-8dab-e0d10286cccf.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column loan_status
+		dataType: string
+		lineageTag: 7b4d2538-60ef-4d56-9bd1-b886df33f473
+		summarizeBy: none
+		sourceColumn: loan_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_purpose
+		dataType: string
+		lineageTag: c3f44f0d-99c4-4cc6-b6b7-ff9d016accb1
+		summarizeBy: none
+		sourceColumn: loan_purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column loan_title
+		dataType: string
+		lineageTag: 641879e0-35c4-4b59-978d-f6429f775cc0
+		summarizeBy: none
+		sourceColumn: loan_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column debt_to_income_ratio
+		dataType: double
+		lineageTag: d474a9e7-748c-4fe0-96b1-ed969ae1f4eb
+		summarizeBy: sum
+		sourceColumn: debt_to_income_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column earliest_credit_line_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 583dcb7b-2395-4950-b967-f2f79897c3e4
+		summarizeBy: none
+		sourceColumn: earliest_credit_line_date
+
+		variation Variation
+			isDefault
+			relationship: b29cae97-51e3-4841-a322-0285186b0ffa
+			defaultHierarchy: LocalDateTable_1d7e4c86-6dc5-40dd-b35e-66bf6e1a112a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column open_accounts
+		dataType: int64
+		formatString: 0
+		lineageTag: b5673337-658b-44c3-96e0-c9c7fea2d1ba
+		summarizeBy: sum
+		sourceColumn: open_accounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column public_records
+		dataType: int64
+		formatString: 0
+		lineageTag: 78653912-5d31-4a5f-ac87-0e382bd5fce9
+		summarizeBy: sum
+		sourceColumn: public_records
+
+		annotation SummarizationSetBy = Automatic
+
+	column revolving_balance
+		dataType: double
+		lineageTag: b5fc7643-a9b3-4d50-b063-82374aebb43a
+		summarizeBy: sum
+		sourceColumn: revolving_balance
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column revolving_utilization
+		dataType: double
+		lineageTag: 902fec6a-3cc9-4b34-a603-f12a132e5e30
+		summarizeBy: sum
+		sourceColumn: revolving_utilization
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_accounts
+		dataType: int64
+		formatString: 0
+		lineageTag: 88c67d27-38cf-46a6-aa06-638abc2fcadf
+		summarizeBy: sum
+		sourceColumn: total_accounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column initial_list_status
+		dataType: string
+		lineageTag: 4cb3e4af-5854-4fdb-9885-94b1f8644f4a
+		summarizeBy: none
+		sourceColumn: initial_list_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column application_type
+		dataType: string
+		lineageTag: fdfe59ca-a303-4f47-b9a0-8431aee9a2a7
+		summarizeBy: none
+		sourceColumn: application_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column mortgage_accounts
+		dataType: int64
+		formatString: 0
+		lineageTag: ed477ca8-7ce1-4e18-bef5-4d8e546ea123
+		summarizeBy: sum
+		sourceColumn: mortgage_accounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column public_record_bankruptcies
+		dataType: int64
+		formatString: 0
+		lineageTag: cc6502d4-204f-4a46-a1bf-8e4c5c36bd98
+		summarizeBy: sum
+		sourceColumn: public_record_bankruptcies
+
+		annotation SummarizationSetBy = Automatic
+
+	column Income_Group
+		dataType: string
+		lineageTag: d3a4b7f1-a45d-49a4-88eb-77c6e4a8f540
+		summarizeBy: none
+		sourceColumn: Income_Group
+
+		annotation SummarizationSetBy = Automatic
+
+	column Loan_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8041c36d-7b6c-4c0c-85b8-3a8b0785b66e
+		summarizeBy: none
+		sourceColumn: Loan_ID
+
+		annotation SummarizationSetBy = User
+
+	column loan_term_months
+		dataType: int64
+		formatString: 0
+		lineageTag: 207ad0ef-0cf4-4a78-9bea-cf920e59c914
+		summarizeBy: none
+		sourceColumn: loan_term_months
+
+		annotation SummarizationSetBy = User
+
+	column loan_status_category
+		dataType: string
+		lineageTag: c4fd8d71-541a-4b72-aea0-c0131373f951
+		summarizeBy: none
+		sourceColumn: loan_status_category
+
+		annotation SummarizationSetBy = User
+
+	column issue_month
+		dataType: int64
+		formatString: 0
+		lineageTag: 56bf8d07-f2c6-437c-9c2c-2f363eb7a94f
+		summarizeBy: none
+		sourceColumn: issue_month
+
+		annotation SummarizationSetBy = User
+
+	column issue_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2641fc30-345b-4b3b-b819-02cadde53439
+		summarizeBy: none
+		sourceColumn: issue_year
+
+		annotation SummarizationSetBy = User
+
+	column employment_length_years
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e41b0a7-2243-4f82-9208-97c6219a4f0e
+		summarizeBy: average
+		sourceColumn: employment_length_years
+
+		annotation SummarizationSetBy = User
+
+	column 'Credit History Years' =
+			
+			DATEDIFF(
+			    lending_club_loan_two[earliest_credit_line_date],
+			    lending_club_loan_two[issue_date],
+			    MONTH
+			)
+		formatString: 0
+		lineageTag: 62200b2a-88cd-4f87-84f6-adbc82142256
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition lending_club_loan_two = m
+		mode: import
+		source =
+				let
+					Source = Csv.Document(File.Contents("C:\Popinzs\Projects\Power BI Projects\Bank Loan Analytical Project\04_Power_bi_files\Files\lending_club_loan_two.csv"), [Delimiter=",", Columns=27, Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+					#"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					#"Removed Address" = Table.RemoveColumns(#"Promoted Headers", {"address"}),
+					TextColumns = {"term", "grade", "sub_grade", "emp_title", "emp_length", "home_ownership", "verification_status", "loan_status", "purpose", "title", "initial_list_status", "application_type"},
+					#"Trimmed and Cleaned Text" = Table.TransformColumns(
+						#"Removed Address",
+						List.Transform(
+							TextColumns,
+							(ColumnName) => {
+								ColumnName,
+								(Value) => if Value = null then null else Text.Clean(Text.Trim(Value)),
+								type nullable text
+							}
+						)
+					),
+					#"Empty Strings to Null" = Table.ReplaceValue(
+						#"Trimmed and Cleaned Text",
+						"",
+						null,
+						Replacer.ReplaceValue,
+						List.Combine({TextColumns, {"mort_acc", "revol_util", "pub_rec_bankruptcies"}})
+					),
+					#"Changed Type" = Table.TransformColumnTypes(
+						#"Empty Strings to Null",
+						{
+							{"loan_amnt", type number},
+							{"term", type text},
+							{"int_rate", type number},
+							{"installment", type number},
+							{"grade", type text},
+							{"sub_grade", type text},
+							{"emp_title", type text},
+							{"emp_length", type text},
+							{"home_ownership", type text},
+							{"annual_inc", type number},
+							{"verification_status", type text},
+							{"issue_d", type date},
+							{"loan_status", type text},
+							{"purpose", type text},
+							{"title", type text},
+							{"dti", type number},
+							{"earliest_cr_line", type date},
+							{"open_acc", Int64.Type},
+							{"pub_rec", Int64.Type},
+							{"revol_bal", type number},
+							{"revol_util", type number},
+							{"total_acc", Int64.Type},
+							{"initial_list_status", type text},
+							{"application_type", type text},
+							{"mort_acc", Int64.Type},
+							{"pub_rec_bankruptcies", Int64.Type}
+						}
+					),
+					#"Added Term Months" = Table.AddColumn(
+						#"Changed Type",
+						"Term_Months",
+						each if [term] = null then null else Number.FromText(Text.BeforeDelimiter([term], " ")),
+						Int64.Type
+					),
+					#"Added Loan Status Category" = Table.AddColumn(
+						#"Added Term Months",
+						"Loan_Status_Category",
+						each
+							if [loan_status] = null then null
+							else if [loan_status] = "Fully Paid" then "Good Loan"
+							else if [loan_status] = "Charged Off" then "Bad Loan"
+							else "Other",
+						type text
+					),
+					#"Added Issue Month" = Table.AddColumn(
+						#"Added Loan Status Category",
+						"Issue_Month",
+						each if [issue_d] = null then null else Date.Month([issue_d]),
+						Int64.Type
+					),
+					#"Added Issue Year" = Table.AddColumn(
+						#"Added Issue Month",
+						"Issue_Year",
+						each if [issue_d] = null then null else Date.Year([issue_d]),
+						Int64.Type
+					),
+					#"Added Employment Length Years" = Table.AddColumn(
+						#"Added Issue Year",
+						"Employment_Length_Years",
+						each
+							if [emp_length] = null then null
+							else if [emp_length] = "< 1 year" then 0
+							else if [emp_length] = "10+ years" then 10
+							else Number.FromText(Text.BeforeDelimiter([emp_length], " ")),
+						Int64.Type
+					),
+					#"Added Income Group" = Table.AddColumn(
+						#"Added Employment Length Years",
+						"Income_Group",
+						each
+							if [annual_inc] = null or [annual_inc] <= 0 then "Unknown"
+							else if [annual_inc] < 30000 then "Low Income"
+							else if [annual_inc] < 60000 then "Medium Income"
+							else if [annual_inc] < 100000 then "High Income"
+							else "Very High Income",
+						type text
+					),
+					#"Added Loan ID" = Table.AddIndexColumn(#"Added Income Group", "Loan_ID", 1, 1, Int64.Type),
+					#"Renamed Columns" = Table.RenameColumns(
+						#"Added Loan ID",
+						{
+							{"loan_amnt", "loan_amount"},
+							{"term", "loan_term"},
+							{"int_rate", "interest_rate"},
+							{"installment", "installment_amount"},
+							{"grade", "loan_grade"},
+							{"sub_grade", "loan_sub_grade"},
+							{"emp_title", "employment_title"},
+							{"emp_length", "employment_length"},
+							{"annual_inc", "annual_income"},
+							{"issue_d", "issue_date"},
+							{"purpose", "loan_purpose"},
+							{"title", "loan_title"},
+							{"dti", "debt_to_income_ratio"},
+							{"earliest_cr_line", "earliest_credit_line_date"},
+							{"open_acc", "open_accounts"},
+							{"pub_rec", "public_records"},
+							{"revol_bal", "revolving_balance"},
+							{"revol_util", "revolving_utilization"},
+							{"total_acc", "total_accounts"},
+							{"mort_acc", "mortgage_accounts"},
+							{"pub_rec_bankruptcies", "public_record_bankruptcies"},
+							{"Term_Months", "loan_term_months"},
+							{"Loan_Status_Category", "loan_status_category"},
+							{"Issue_Month", "issue_month"},
+							{"Issue_Year", "issue_year"},
+							{"Employment_Length_Years", "employment_length_years"}
+						}
+					),
+				    #"Replaced Value" = Table.ReplaceValue(#"Renamed Columns",null,"Unknown",Replacer.ReplaceValue,{"employment_length"})
+				in
+				    #"Replaced Value"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

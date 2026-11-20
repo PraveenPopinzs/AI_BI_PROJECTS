@@ -1,0 +1,15 @@
+relationship 4adec703-f086-43c1-b010-7c0a083ef207
+	joinOnDateBehavior: datePartOnly
+	fromColumn: lending_club_loan_two.issue_date
+	toColumn: LocalDateTable_00d3e7f1-afc5-4062-8dab-e0d10286cccf.Date
+
+relationship b29cae97-51e3-4841-a322-0285186b0ffa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: lending_club_loan_two.earliest_credit_line_date
+	toColumn: LocalDateTable_1d7e4c86-6dc5-40dd-b35e-66bf6e1a112a.Date
+
+relationship Dim_Date_issue_date
+	joinOnDateBehavior: datePartOnly
+	fromColumn: lending_club_loan_two.issue_date
+	toColumn: Dim_Date.Date
+

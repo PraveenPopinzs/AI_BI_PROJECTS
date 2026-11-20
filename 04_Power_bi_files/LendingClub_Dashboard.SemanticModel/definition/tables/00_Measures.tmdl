@@ -1,0 +1,205 @@
+table 00_Measures
+	lineageTag: 5fb2b98d-7a41-4f34-9ad5-4e51d9a8f3c1
+
+	measure 'Total Loans' = COUNTROWS('lending_club_loan_two')
+		formatString: #,##0
+		lineageTag: 10b71a3d-71c3-4f22-b4f3-a47d52d35323
+
+	measure 'Total Loan Amount' = SUM('lending_club_loan_two'[loan_amount])
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: 2c706f0e-1bb2-45cf-b2ce-c2f7ca18cd9c
+
+	measure 'Average Loan Amount' = AVERAGE('lending_club_loan_two'[loan_amount])
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: 684ac625-1c3c-4c12-95ea-fb0e8f20a447
+
+	measure 'Average Interest Rate' = AVERAGE('lending_club_loan_two'[interest_rate])
+		formatString: 0.00\%
+		lineageTag: 75cfc685-9e90-4263-b82d-473d448f4cd4
+
+	measure 'Fully Paid Loans' =
+			CALCULATE(
+				[Total Loans],
+				'lending_club_loan_two'[loan_status] = "Fully Paid"
+			)
+		formatString: #,##0
+		lineageTag: 8e9d178d-551d-48ec-b97c-b0b6b2b68301
+
+	measure 'Charged Off Loans' =
+			CALCULATE(
+				[Total Loans],
+				'lending_club_loan_two'[loan_status] = "Charged Off"
+			)
+		formatString: #,##0
+		lineageTag: 4bb412c5-08ac-4584-aeb6-84d3f7798d2b
+
+	measure 'Fully Paid Percentage' =
+			DIVIDE(
+				[Fully Paid Loans],
+				CALCULATE(
+					[Total Loans],
+					REMOVEFILTERS('lending_club_loan_two'[loan_status])
+				)
+			)
+		formatString: 0.00%
+		lineageTag: 16c2cf17-2ce2-4214-9ea1-a9c800941d90
+
+	measure 'Charge-Off Rate' =
+			DIVIDE(
+				[Charged Off Loans],
+				CALCULATE(
+					[Total Loans],
+					REMOVEFILTERS('lending_club_loan_two'[loan_status])
+				)
+			)
+		formatString: 0.00%
+		lineageTag: 48fd03b2-a0f6-4b79-b260-4ca06cf789c1
+
+	measure 'Total Charged-Off Loan Amount' =
+			CALCULATE(
+				[Total Loan Amount],
+				'lending_club_loan_two'[loan_status] = "Charged Off"
+			)
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: 313a92f2-4e88-494a-b07d-f72e12edf3b6
+
+	/// Average debt-to-income ratio in the current filter context; source values are on a 0 to 100 percentage-point scale.
+	measure 'Average DTI' = AVERAGE('lending_club_loan_two'[debt_to_income_ratio])
+		formatString: 0.00\%
+		lineageTag: 658d1c1b-18cc-4b41-b83e-611c6e560b02
+
+	/// Average annual income in the current filter context.
+	measure 'Average Annual Income' = AVERAGE('lending_club_loan_two'[annual_income])
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: a1ba9f02-d2b7-4a22-8ec2-ab6f599caacf
+
+	/// Average revolving credit utilization in the current filter context; source values are on a 0 to 100 scale.
+	measure 'Average Revolving Utilization' = AVERAGE('lending_club_loan_two'[revolving_utilization])
+		formatString: 0.00\%
+		lineageTag: dbd9ba3e-39d9-4805-b0ec-2bef5e0fdaf1
+
+	/// Average interest rate for charged-off loans, respecting other current filters.
+	measure 'Average Interest Rate for Charged-Off Loans' =
+			CALCULATE(
+			    AVERAGE('lending_club_loan_two'[interest_rate]),
+			    KEEPFILTERS('lending_club_loan_two'[loan_status] = "Charged Off")
+			)
+		formatString: 0.00\%
+		lineageTag: bd469065-50a0-44be-9590-a5633aefcfae
+
+	/// Average interest rate for fully paid loans, respecting other current filters.
+	measure 'Average Interest Rate for Fully Paid Loans' =
+			CALCULATE(
+			    AVERAGE('lending_club_loan_two'[interest_rate]),
+			    KEEPFILTERS('lending_club_loan_two'[loan_status] = "Fully Paid")
+			)
+		formatString: 0.00\%
+		lineageTag: 2b5d72b7-d765-4e36-816e-89b1f4e89d8b
+
+	/// Sum of loan amounts for charged-off loans in the current filter context.
+	measure 'Charged-Off Loan Amount' =
+			CALCULATE(
+			    SUM('lending_club_loan_two'[loan_amount]),
+			    KEEPFILTERS('lending_club_loan_two'[loan_status] = "Charged Off")
+			)
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: 8f3f7cc2-57ed-42d4-80d9-31a87fe84dca
+
+	/// Sum of loan amounts for fully paid loans in the current filter context.
+	measure 'Fully Paid Loan Amount' =
+			CALCULATE(
+			    SUM('lending_club_loan_two'[loan_amount]),
+			    KEEPFILTERS('lending_club_loan_two'[loan_status] = "Fully Paid")
+			)
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: 9bb8fe3b-0072-400e-8050-1f3a386208e6
+
+	/// Share of loans that are charged off within the current filter context; use loan_grade in the visual to compare grades.
+	measure 'Charged-Off Loan Percentage by Grade' =
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('lending_club_loan_two'),
+			        KEEPFILTERS('lending_club_loan_two'[loan_status] = "Charged Off")
+			    ),
+			    COUNTROWS('lending_club_loan_two')
+			)
+		formatString: 0.00%
+		lineageTag: 9d80ed1b-25e0-4af4-92f3-c6e9f5239f4c
+
+	/// Loan count in the current filter context; use loan_grade to display counts by grade.
+	measure 'Loan Count by Grade' = [Total Loans]
+		formatString: #,##0
+		lineageTag: f1144fad-aea5-452f-a269-7e9030485233
+
+	/// Average loan amount in the current filter context; use loan_grade to compare grades.
+	measure 'Average Loan Amount by Grade' = [Average Loan Amount]
+		formatString: $#,##0.00;($#,##0.00);$0.00
+		lineageTag: eb204dfd-4269-42fc-b7c6-24e7ae13c3cd
+
+	measure 'Charge-Off Rate by Grade' =
+			
+			DIVIDE(
+			    [Charged Off Loans],
+			    [Total Loans],
+			    0
+			)
+		formatString: 0
+		lineageTag: e5695267-29dd-416a-a66b-65f2432e7bdd
+
+	measure 'Total Borrowers' = COUNTROWS(lending_club_loan_two)
+		formatString: 0
+		lineageTag: bd359032-4666-4f0b-b257-badd7637aef4
+
+	measure 'High Income Percentage' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [Total Loans],
+			        lending_club_loan_two[Income_Group]= "High Income"
+			    ),
+			    [Total Loans],
+			    0
+			)
+		lineageTag: 50553867-5a82-46bc-ab06-09bfe142d931
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Renters Percentage' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        [Total Loans],
+			        lending_club_loan_two[home_ownership] = "RENT"
+			    ),
+			    [Total Loans],
+			    0
+			)
+		lineageTag: 3abbb264-ada4-4b3c-861e-ddfa4a30a803
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Employement Years' = AVERAGE(lending_club_loan_two[employment_length_years])
+		lineageTag: 03ca6361-92e6-4ba0-a5ba-a763679e31cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Credit History' = AVERAGE(lending_club_loan_two[Credit History Years])
+		lineageTag: 65236415-edd8-439c-ba2c-dcde9307b78f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _MeasureHolder
+		dataType: string
+		isHidden
+		lineageTag: f3682e1a-81c8-4ec1-ae64-c45661bc55e0
+		summarizeBy: none
+		sourceColumn: _MeasureHolder
+
+		annotation SummarizationSetBy = User
+
+	partition 00_Measures = m
+		mode: import
+		source = #table(type table [_MeasureHolder = text], {})
+
+	annotation PBI_ResultType = Table
+
