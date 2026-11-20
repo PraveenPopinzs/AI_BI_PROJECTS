@@ -11,7 +11,9 @@ Bank Loan Analytical Project/
 ├── 01_Raw Data/                    # Original CSV dataset
 ├── 02_Excel_Cleaned_Data/          # Initial cleaning in Excel
 ├── 03_SQL_queries/                 # SQL scripts for DB setup & analysis
-└── 04_Power_bi_files/              # Power BI semantic model & dashboard
+├── 04_Power_bi_files/              # Power BI semantic model & dashboard
+├── screenshots/                    # Dashboard page screenshots
+└── LendingClub_Dashboard.pptx      # PowerPoint presentation with dashboard
 ```
 
 ---
@@ -172,6 +174,17 @@ The report contains **3 pages** with visuals covering:
 - Loan performance overview (KPIs, status breakdown)
 - Grade & risk analysis
 - Trend analysis (monthly/yearly issuance, income groups, home ownership)
+
+### 📸 Dashboard Screenshots
+
+**Page 1 — Loan Performance Overview**
+![Page 1](screenshots/image4.png)
+
+**Page 2 — Grade & Risk Analysis**
+![Page 2](screenshots/image5.png)
+
+**Page 3 — Trend Analysis**
+![Page 3](screenshots/image6.png)
 
 ---
 
