@@ -1,2 +1,4 @@
 # Exclude large raw data files
 01_Raw Data/
+02_Excel_Cleaned_Data/Loan_Data_Cleaning.xlsx
+04_Power_bi_files/Files/lending_club_loan_two.csv
