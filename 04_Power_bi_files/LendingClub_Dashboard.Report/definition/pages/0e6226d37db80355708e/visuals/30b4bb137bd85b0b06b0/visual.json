@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "30b4bb137bd85b0b06b0",
   "position": {
-    "x": 1024.3596236668454,
-    "y": 288.45603593279236,
+    "x": 1025,
+    "y": 285,
     "z": 3000,
-    "height": 413.37794125801742,
-    "width": 833.56980462468346,
+    "height": 415,
+    "width": 875,
     "tabOrder": 3000
   },
   "visual": {
@@ -166,6 +166,13 @@
       "title": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average DTI vs Charge-Off Rate'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -203,13 +210,6 @@
               "expr": {
                 "Literal": {
                   "Value": "19D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Average DTI vs Charge-Off Rate'"
                 }
               }
             }
@@ -291,6 +291,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

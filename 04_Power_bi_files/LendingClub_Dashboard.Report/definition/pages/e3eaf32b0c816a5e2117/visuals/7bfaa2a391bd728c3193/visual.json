@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "7bfaa2a391bd728c3193",
   "position": {
-    "x": 32.5,
-    "y": 427.5,
+    "x": 13.333333333333334,
+    "y": 390,
     "z": 7000,
-    "height": 87.5,
-    "width": 252.5,
+    "height": 111.66666666666667,
+    "width": 295,
     "tabOrder": 7000
   },
   "visual": {
@@ -51,6 +51,13 @@
       "header": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Loan Status'"
+                }
+              }
+            },
             "textSize": {
               "expr": {
                 "Literal": {
@@ -74,13 +81,6 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Loan Status'"
                 }
               }
             }
@@ -244,7 +244,19 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

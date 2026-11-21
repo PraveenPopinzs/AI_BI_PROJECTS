@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "ee116fc0b737088dd3be",
   "position": {
-    "x": 910,
+    "x": 945,
     "y": 320,
     "z": 3000,
     "height": 352.5,
-    "width": 927.5,
+    "width": 960,
     "tabOrder": 3000
   },
   "visual": {
@@ -197,6 +197,13 @@
       "title": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Borrowers by Home Ownership'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -234,13 +241,6 @@
               "expr": {
                 "Literal": {
                   "Value": "19D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Total Borrowers by Home Ownership'"
                 }
               }
             }
@@ -322,6 +322,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

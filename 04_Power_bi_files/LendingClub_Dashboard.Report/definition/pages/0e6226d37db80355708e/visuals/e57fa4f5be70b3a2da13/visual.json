@@ -3,7 +3,7 @@
   "name": "e57fa4f5be70b3a2da13",
   "position": {
     "x": 280,
-    "y": 287.5,
+    "y": 285,
     "z": 2000,
     "height": 415,
     "width": 725,
@@ -196,6 +196,13 @@
       "title": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Charge-Off Rate by Grade'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -233,13 +240,6 @@
               "expr": {
                 "Literal": {
                   "Value": "19D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Charge-Off Rate by Grade'"
                 }
               }
             }
@@ -321,6 +321,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

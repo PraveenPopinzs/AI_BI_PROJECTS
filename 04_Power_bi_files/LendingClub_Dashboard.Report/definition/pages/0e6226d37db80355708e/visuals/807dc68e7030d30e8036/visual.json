@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "807dc68e7030d30e8036",
   "position": {
-    "x": 1024.3596236668454,
-    "y": 720.00443614720621,
+    "x": 1025,
+    "y": 720,
     "z": 5000,
-    "height": 358.86656438882835,
-    "width": 833.56980462468346,
+    "height": 360,
+    "width": 875,
     "tabOrder": 5000
   },
   "visual": {
@@ -197,6 +197,13 @@
       "title": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average DTI Comparison'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -234,13 +241,6 @@
               "expr": {
                 "Literal": {
                   "Value": "19D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Average DTI Comparison'"
                 }
               }
             }
@@ -322,6 +322,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

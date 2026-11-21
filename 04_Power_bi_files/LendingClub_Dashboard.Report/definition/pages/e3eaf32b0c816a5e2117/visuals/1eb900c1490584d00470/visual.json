@@ -6,7 +6,7 @@
     "y": 652.5,
     "z": 5000,
     "height": 402.5,
-    "width": 907.5,
+    "width": 927.5,
     "tabOrder": 5000
   },
   "visual": {
@@ -236,6 +236,13 @@
                   "Value": "19D"
                 }
               }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Loan Amount by Loan Purpose'"
+                }
+              }
             }
           }
         }
@@ -322,6 +329,18 @@
               "expr": {
                 "Literal": {
                   "Value": "0D"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             }
@@ -560,20 +579,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "a9f3c3431d5c6000ce5c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "00_Measures"
-              }
-            },
-            "Property": "Total Loan Amount"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

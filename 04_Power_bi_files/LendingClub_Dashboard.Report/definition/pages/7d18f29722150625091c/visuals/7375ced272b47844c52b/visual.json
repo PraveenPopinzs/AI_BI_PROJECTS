@@ -6,7 +6,7 @@
     "y": 320,
     "z": 2000,
     "height": 352.5,
-    "width": 600,
+    "width": 647.5,
     "tabOrder": 2000
   },
   "visual": {
@@ -84,7 +84,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13D"
+                  "Value": "14D"
                 }
               }
             },
@@ -106,10 +106,24 @@
       "labels": [
         {
           "properties": {
+            "labelStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Data'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "15D"
+                  "Value": "14D"
                 }
               }
             },
@@ -122,13 +136,6 @@
                       "Percent": 0
                     }
                   }
-                }
-              }
-            },
-            "labelStyle": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Data'"
                 }
               }
             }
@@ -153,6 +160,13 @@
       "title": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Borrowers by Income Group'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -190,13 +204,6 @@
               "expr": {
                 "Literal": {
                   "Value": "19D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Borrowers by Income Group'"
                 }
               }
             }
@@ -278,6 +285,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

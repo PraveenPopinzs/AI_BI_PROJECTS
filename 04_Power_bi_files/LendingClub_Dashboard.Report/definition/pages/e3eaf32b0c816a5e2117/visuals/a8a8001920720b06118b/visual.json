@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "a8a8001920720b06118b",
   "position": {
-    "x": 974.39086153675544,
-    "y": 270.28557697639604,
+    "x": 975,
+    "y": 263.33333333333337,
     "z": 3000,
-    "height": 358.86656438882835,
-    "width": 908.52294781981857,
+    "height": 376.66666666666669,
+    "width": 928.33333333333337,
     "tabOrder": 3000
   },
   "visual": {
@@ -213,6 +213,20 @@
                   "Value": "true"
                 }
               }
+            },
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
+            "markerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "7D"
+                }
+              }
             }
           }
         }
@@ -356,6 +370,18 @@
                   "Value": "0D"
                 }
               }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -489,5 +515,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a82ad9b051c380daaa29",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "acabbd0022b67e1b318c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "Month Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f3e84e504c56c82829ad",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "Quarter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "812b6e091c1208d7ad47",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "00_Measures"
+              }
+            },
+            "Property": "Total Loans"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

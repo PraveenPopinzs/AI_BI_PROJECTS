@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "c0353d5608060d0ee093",
   "position": {
-    "x": 911.55442388275162,
-    "y": 726.77987850111276,
-    "z": 9002,
-    "height": 352.5,
-    "width": 927.5,
-    "tabOrder": 9002
+    "x": 945,
+    "y": 690,
+    "z": 10000,
+    "height": 370,
+    "width": 960,
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "decompositionTreeVisual",
@@ -235,6 +235,31 @@
               "expr": {
                 "Literal": {
                   "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "levelHeader": [
+        {
+          "properties": {
+            "showSubtitles": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "levelHeaderBackgroundColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             }
@@ -482,6 +507,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },

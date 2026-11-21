@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "b5ed23f3313d59377045",
   "position": {
-    "x": 25,
-    "y": 707.5,
-    "z": 5000,
-    "height": 352.5,
-    "width": 857.5,
-    "tabOrder": 5000
+    "x": 10,
+    "y": 690,
+    "z": 4000,
+    "height": 370,
+    "width": 920,
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "lineChart",
@@ -195,10 +195,24 @@
       "lineStyles": [
         {
           "properties": {
+            "strokeWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "5D"
+                }
+              }
+            },
             "showMarker": {
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "markerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "7D"
                 }
               }
             }
@@ -210,6 +224,13 @@
       "title": [
         {
           "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average Credit History by Employment Length'"
+                }
+              }
+            },
             "show": {
               "expr": {
                 "Literal": {
@@ -247,13 +268,6 @@
               "expr": {
                 "Literal": {
                   "Value": "19D"
-                }
-              }
-            },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Average Credit History by Employment Length'"
                 }
               }
             }
@@ -335,6 +349,18 @@
               "expr": {
                 "Literal": {
                   "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 8,
+                      "Percent": 0.6
+                    }
+                  }
                 }
               }
             },
